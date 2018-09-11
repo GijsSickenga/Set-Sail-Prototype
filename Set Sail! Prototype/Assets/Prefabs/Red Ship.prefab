@@ -177,11 +177,7 @@ GameObject:
   - component: {fileID: 82275066893848832}
   - component: {fileID: 82161447306613180}
   - component: {fileID: 54916341023786964}
-<<<<<<< Updated upstream
-  - component: {fileID: 114190504128766194}
-=======
   - component: {fileID: 95748322614007636}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Red Ship
   m_TagString: Untagged

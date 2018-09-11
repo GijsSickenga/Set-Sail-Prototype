@@ -34,6 +34,7 @@ public class ShipStats : MonoBehaviour
 
     public void EndDeathAnimation()
     {
+        GetComponent<QuestManager>().ProgressQuest();
         Destroy(gameObject);
     }
 }

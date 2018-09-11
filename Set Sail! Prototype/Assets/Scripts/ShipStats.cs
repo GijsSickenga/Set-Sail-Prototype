@@ -31,7 +31,7 @@ public class ShipStats : MonoBehaviour
         GetComponent<Animator>().SetBool("isSinking", true);
     }
 
-    private void EndDeathAnimation()
+    public void EndDeathAnimation()
     {
         Destroy(gameObject);
     }

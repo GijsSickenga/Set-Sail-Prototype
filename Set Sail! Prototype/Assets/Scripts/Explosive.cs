@@ -5,6 +5,7 @@ using UnityEngine;
 public class Explosive : MonoBehaviour
 {
     public GameObject explosionEffect;
+    public GameObject fireEffect;
     public GameObject splashEffect;
 
     public int damage = 1;
@@ -22,7 +23,9 @@ public class Explosive : MonoBehaviour
 		if (shipStats != null)
 		{
             shipStats.Damage(damage);
-            // Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+            Instantiate(fireEffect, transform.position, Quaternion.identity, contact.otherCollider.transform);
 		}
         else
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TempParticle : MonoBehaviour
 {
 	private ParticleSystem _particleSystem;
+	public float deathDelay = 5f;
 
 	private void Start()
 	{
@@ -13,7 +14,7 @@ public class TempParticle : MonoBehaviour
 
 	private IEnumerator Die()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(deathDelay);
 		Destroy(gameObject);
 		yield break;
 	}

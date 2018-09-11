@@ -1528,6 +1528,7 @@ MonoBehaviour:
   health: 9
   maxHealth: 9
   shipAnim: {fileID: 95978195600361554}
+  crateObj: {fileID: 135798, guid: 12263925bd92ff44a998598877e693a9, type: 2}
 --- !u!114 &114304825556891526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1584,9 +1585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7d052328e6fe74b82d57787fc94e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 9
-  maxHealth: 9
+  health: 4
+  maxHealth: 4
   shipAnim: {fileID: 95978195600361554}
+  crateObj: {fileID: 0}
 --- !u!136 &136313579374775222
 CapsuleCollider:
   m_ObjectHideFlags: 1

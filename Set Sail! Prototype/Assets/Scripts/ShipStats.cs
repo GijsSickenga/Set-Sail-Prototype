@@ -8,6 +8,7 @@ public class ShipStats : MonoBehaviour
 	public int health = 9;
 	public int maxHealth = 9;
     public Animator shipAnim;
+    public GameObject crateObj;
 
     void Update()
     {
@@ -34,7 +35,8 @@ public class ShipStats : MonoBehaviour
 
     public void EndDeathAnimation()
     {
-        GetComponent<QuestManager>().ProgressQuest();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<QuestManager>().ProgressQuest();
+        Instantiate(crateObj, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

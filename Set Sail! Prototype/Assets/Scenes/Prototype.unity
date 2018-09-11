@@ -322,7 +322,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
-  m_SortMode: 0
+  m_SortMode: 1
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -5216,6 +5216,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114987083138066690, guid: 6251cf3f9a2accc479849e7bb9cf5c62, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 6251cf3f9a2accc479849e7bb9cf5c62, type: 2}
   m_IsPrefabAsset: 0

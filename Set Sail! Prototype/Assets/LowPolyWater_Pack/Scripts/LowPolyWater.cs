@@ -6,7 +6,8 @@ namespace LowPolyWater
     {
         public float waveHeight = 0.5f;
         public float waveFrequency = 0.5f;
-        public float waveLength = 0.75f;
+
+        public float horizontalSpeed = 0.4f, verticalSpeed = 0.6f;
 
         //Position where the waves originate from
         public Vector3 waveOriginPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -79,6 +80,8 @@ namespace LowPolyWater
                 //Initially set the wave height to 0
                 v.y = 0.0f;
 
+                v.y = (Mathf.PerlinNoise(v.x / waveFrequency + (Time.time * horizontalSpeed), v.z / waveFrequency + (Time.time * verticalSpeed)) * 2 - 1) * waveHeight;
+                /*
                 //Get the distance between wave origin position and the current vertex
                 float distance = Vector3.Distance(v, waveOriginPosition);
                 distance = (distance % waveLength) / waveLength;
@@ -86,7 +89,7 @@ namespace LowPolyWater
                 //Oscilate the wave height via sine to create a wave effect
                 v.y = waveHeight * Mathf.Sin(Time.time * Mathf.PI * 2.0f * waveFrequency
                 + (Mathf.PI * 2.0f * distance));
-                
+                */
                 //Update the vertex
                 vertices[i] = v;
             }

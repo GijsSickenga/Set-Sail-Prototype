@@ -7,6 +7,7 @@ public class ShipStats : MonoBehaviour
 {
 	public int health = 9;
 	public int maxHealth = 9;
+    public Animator shipAnim;
 
     void Update()
     {
@@ -28,10 +29,10 @@ public class ShipStats : MonoBehaviour
 
     private void Die()
     {
-        GetComponent<Animator>().SetBool("isSinking", true);
+        shipAnim.GetComponent<Animator>().SetBool("isSinking", true);
     }
 
-    private void EndDeathAnimation()
+    public void EndDeathAnimation()
     {
         Destroy(gameObject);
     }

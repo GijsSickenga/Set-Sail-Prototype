@@ -20,15 +20,15 @@ public class Explosive : MonoBehaviour
         ContactPoint contact = collision.contacts[0];
         Vector3 pos = contact.point;
 
-        ShipStats shipStats = contact.otherCollider.GetComponent<ShipStats>();
+        ShipStats shipStats = contact.otherCollider.transform.parent.parent.GetComponent<ShipStats>();
 		if (shipStats != null)
 		{
-            shipStats.health -= damage;
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            shipStats.Damage(damage);
+            // Instantiate(explosionEffect, transform.position, Quaternion.identity);
 		}
         else
         {
-            Instantiate(splashEffect, transform.position, Quaternion.identity);
+            // Instantiate(splashEffect, transform.position, Quaternion.identity);
         }
 
         // Play explosion sound effect.

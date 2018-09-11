@@ -12,6 +12,9 @@ public class QuestManager : MonoBehaviour {
 		get {return questActive;}
 	}
 
+	public enum QuestStates {Fight, Loot, Delivery, Inactive};
+	public QuestStates questState = QuestStates.Inactive;
+
 	[SerializeField]
 	private GameObject questParent;
 	[SerializeField]
@@ -30,13 +33,7 @@ public class QuestManager : MonoBehaviour {
 	{
 		if(questActive)
 		{
-			if(questTarget == null)
-			{
-				StopQuest();
-				return;
-			}
-
-			if(questTarget.tag == "Enemy")
+			if(questState == QuestStates.Fight && questTarget != null)
 			{
 				// Got to replace the message in a local variable cus we no change template
 				string theSubtext = vesselMessage;
@@ -49,10 +46,25 @@ public class QuestManager : MonoBehaviour {
 	{
 		questActive = true;
 		questTarget = newQuestTarget;
+		questState = QuestStates.Fight;
 
 		questHeadline.text = vesselHeadline;
 		questSubtext.text = vesselMessage + DirectionToTarget();
 		questParent.SetActive(true);
+	}
+
+	public void ProgressQuest()
+	{
+		if(questState == QuestStates.Fight)
+		{
+			questState = QuestStates.Loot;
+			questHeadline.text = crateHeadline;
+			questSubtext.text = crateMessage;
+		}
+		else if(questState == QuestStates.Loot)
+		{
+			questState = QuestStates.Delivery;
+		}
 	}
 
 	public void StopQuest()
@@ -61,6 +73,7 @@ public class QuestManager : MonoBehaviour {
 		{
 			questActive = false;
 			questTarget = null;
+			questState = QuestStates.Inactive;
 			questParent.SetActive(false);
 		}
 	}

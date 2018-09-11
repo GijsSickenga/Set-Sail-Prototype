@@ -13,8 +13,8 @@ public class QuestTrigger : MonoBehaviour {
 	{
 		if(other.gameObject.tag == "Player" && !_activated)
 		{
-			if( other.gameObject.transform.GetComponent<ShipControls>().sailVelocity < speedThreshold &&
-				!other.gameObject.transform.GetComponent<QuestManager>().QuestActive)
+			if( other.gameObject.GetComponent<ShipControls>().sailVelocity < speedThreshold &&
+				!other.gameObject.GetComponent<QuestManager>().QuestActive)
 			{
 				_activated = true;
 				GameObject questWindow = Instantiate(prefabQuestWindow);
@@ -29,6 +29,10 @@ public class QuestTrigger : MonoBehaviour {
 						"An enemy vessel has been spotted! Take it down before they reach this outpost."
 					);
 				}
+			}
+			else if(other.gameObject.GetComponent<QuestManager>().questState == QuestManager.QuestStates.Delivery)
+			{
+				other.gameObject.GetComponent<QuestManager>().StopQuest();
 			}
 		}
 	}

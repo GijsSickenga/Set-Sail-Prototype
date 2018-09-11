@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 1081815049071340, guid: 4f49f8b862d69114baddf21ab4d9cfbc,
     type: 2}
+  fireEffect: {fileID: 1380408801515860, guid: f84cb2e1853930348a38fdf8bd33d12d, type: 2}
   splashEffect: {fileID: 0}
   damage: 1
 --- !u!135 &135041777717809330

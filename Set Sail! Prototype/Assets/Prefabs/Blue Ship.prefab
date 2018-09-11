@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 82177247294777078}
   - component: {fileID: 82161458079640818}
   - component: {fileID: 54982811228811804}
-  - component: {fileID: 114987083138066690}
   m_Layer: 0
   m_Name: Blue Ship
   m_TagString: Untagged
@@ -898,7 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5e1a73dbc872848a17a4f23bd91c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainObject: {fileID: 0}
+  mainObject: {fileID: 1407585220395376}
 --- !u!114 &114973278950520088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -912,19 +911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 9
   maxHealth: 9
---- !u!114 &114987083138066690
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1407585220395376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e7d052328e6fe74b82d57787fc94e11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 9
-  maxHealth: 9
+  shipAnim: {fileID: 95294576235512384}
 --- !u!136 &136245412989015756
 CapsuleCollider:
   m_ObjectHideFlags: 1

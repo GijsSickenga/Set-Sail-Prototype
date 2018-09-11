@@ -16,7 +16,7 @@ public class Crate : MonoBehaviour {
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float upwards = waterHeight - transform.position.y;
         if (upwards > 0)

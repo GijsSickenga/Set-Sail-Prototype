@@ -94,7 +94,7 @@ MonoBehaviour:
   title: {fileID: 114234660317612612}
   description: {fileID: 114684909511484278}
   confirmText: {fileID: 114432148217823100}
-  enemyShipPrefab: {fileID: 1622938825147708, guid: be68b3e9d546d8344b3a6b7308ee50ea,
+  enemyShipPrefab: {fileID: 1960639959491286, guid: be68b3e9d546d8344b3a6b7308ee50ea,
     type: 2}
   fieldWidth: 300
   fieldHeight: 300

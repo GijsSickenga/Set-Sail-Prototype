@@ -338,7 +338,6 @@ GameObject:
   - component: {fileID: 82740666066161860}
   - component: {fileID: 82512524085666518}
   - component: {fileID: 54631672013107720}
-  - component: {fileID: 114922766287596126}
   m_Layer: 0
   m_Name: Red Ship
   m_TagString: Untagged
@@ -1525,8 +1524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7d052328e6fe74b82d57787fc94e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 9
-  maxHealth: 9
+  health: 4
+  maxHealth: 4
   shipAnim: {fileID: 95978195600361554}
   crateObj: {fileID: 135798, guid: 12263925bd92ff44a998598877e693a9, type: 2}
 --- !u!114 &114304825556891526
@@ -1574,21 +1573,6 @@ MonoBehaviour:
   cannonSounds:
   - {fileID: 82740666066161860}
   - {fileID: 82512524085666518}
---- !u!114 &114922766287596126
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1960639959491286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e7d052328e6fe74b82d57787fc94e11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 4
-  maxHealth: 4
-  shipAnim: {fileID: 95978195600361554}
-  crateObj: {fileID: 0}
 --- !u!136 &136313579374775222
 CapsuleCollider:
   m_ObjectHideFlags: 1

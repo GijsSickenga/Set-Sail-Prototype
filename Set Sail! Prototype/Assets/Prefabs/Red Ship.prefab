@@ -173,6 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4666917169779840}
   - component: {fileID: 114146943018003008}
+  - component: {fileID: 114813201739169904}
   - component: {fileID: 82275066893848832}
   - component: {fileID: 82161447306613180}
   m_Layer: 0
@@ -813,8 +814,6 @@ MonoBehaviour:
   _shootInterval: 0.3
   cannonBall: {fileID: 1523091984373166, guid: 214d3d3d5bb840c47883bc3414ad22de, type: 2}
   cannonBallShootVelocity: 3000
-  health: 9
-  maxHealth: 9
   cannons:
   - {fileID: 4130248839940510}
   - {fileID: 4956627540688058}
@@ -829,6 +828,19 @@ MonoBehaviour:
   - {fileID: 136793940344615480}
   - {fileID: 136607697599598974}
   - {fileID: 136679623618571544}
+--- !u!114 &114813201739169904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604479382047314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7d052328e6fe74b82d57787fc94e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 9
+  maxHealth: 9
 --- !u!136 &136571539841001898
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -20,9 +20,6 @@ public class ShipControls : MonoBehaviour
     public GameObject cannonBall;
     public float cannonBallShootVelocity = 100f;
 
-    public int health = 9;
-    public int maxHealth = 9;
-
     public List<Transform> cannons = new List<Transform>();
 
 	public List<AudioSource> cannonSounds = new List<AudioSource>();
@@ -49,18 +46,18 @@ public class ShipControls : MonoBehaviour
 
         if (Input.GetKey(upButton))
         {
-			// Speed up in 3 seconds.
+			// Speed up with user-set acceleration.
 			_sailVelocity += _sailAcceleration * Time.deltaTime;
         }
 		else if (Input.GetKey(downButton))
         {
-			// Slow down in 2 seconds.
+			// Slow down in 5 seconds.
             _sailVelocity -= _maxSailVelocity / 5f * Time.deltaTime;
         }
 		else
         {
             // Sailing friction.
-            _sailVelocity = Mathf.Lerp(_sailVelocity, 0, _maxSailVelocity * 0.1f * Time.deltaTime);
+            _sailVelocity = Mathf.Lerp(_sailVelocity, 0, _maxSailVelocity * 0.01f * Time.deltaTime);
 		}
 
         if (Input.GetKeyDown(confirmButton))

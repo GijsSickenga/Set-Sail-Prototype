@@ -125,7 +125,7 @@ public class ShipControls : MonoBehaviour
 
     private void IncrementPosition()
     {
-        _myBody.velocity = transform.forward * sailVelocity * Time.deltaTime;
+        _myBody.velocity = transform.forward * sailVelocity;
     }
 
     private void IncrementRotation()

@@ -6,15 +6,15 @@ public class ShipControls : MonoBehaviour
 {
 	public KeyCode leftButton, rightButton, upButton, downButton, confirmButton, shootButton;
 
-	public float _rotationSpeed = 0f;
-	public float _maxRotationSpeed = 60f;
+	public float rotationSpeed = 0f;
+	public float maxRotationSpeed = 60f;
 
-	public float _sailVelocity = 0f;
-	public float _maxSailVelocity = 30f;
-    public float _sailAcceleration = 5.0f;
+	public float sailVelocity = 0f;
+	public float maxSailVelocity = 30f;
+    public float sailAcceleration = 5.0f;
 
-    public float _totalShootCooldown = 2f;
-	public float _shootInterval = 0.3f;
+    public float totalShootCooldown = 2f;
+	public float shootInterval = 0.3f;
 	private bool _reloading = false;
 
     public GameObject cannonBall;
@@ -24,40 +24,48 @@ public class ShipControls : MonoBehaviour
 
 	public List<AudioSource> cannonSounds = new List<AudioSource>();
 
-    public List<Collider> colliders = new List<Collider>();
+    private List<Collider> _colliders = new List<Collider>();
+
+    private void Start()
+    {
+        foreach(Collider col in GetComponentsInChildren(typeof(Collider), true))
+        {
+            _colliders.Add(col);
+        }
+    }
 
 	private void Update()
     {
         if (Input.GetKey(leftButton))
         {
             // Instantly reach max turning speed, counter-clockwise.
-            _rotationSpeed = -_maxRotationSpeed;
+            rotationSpeed = -maxRotationSpeed;
         }
         else if (Input.GetKey(rightButton))
         {
 			// Instantly reach max turning speed, clockwise.
-            _rotationSpeed = _maxRotationSpeed;
+            rotationSpeed = maxRotationSpeed;
         }
 		else
 		{
             // Turning friction.
-            _rotationSpeed = Mathf.Lerp(_rotationSpeed, 0, _maxRotationSpeed * 0.5f * Time.deltaTime);
+            rotationSpeed = Mathf.Lerp(rotationSpeed, 0, maxRotationSpeed * 0.5f * Time.deltaTime);
 		}
 
         if (Input.GetKey(upButton))
         {
 			// Speed up with user-set acceleration.
-			_sailVelocity += _sailAcceleration * Time.deltaTime;
+			sailVelocity += sailAcceleration * Time.deltaTime;
         }
 		else if (Input.GetKey(downButton))
         {
 			// Slow down in 5 seconds.
-            _sailVelocity -= _maxSailVelocity / 5f * Time.deltaTime;
+            sailVelocity -= maxSailVelocity / 5f * Time.deltaTime;
         }
 		else
         {
             // Sailing friction.
-            _sailVelocity = Mathf.Lerp(_sailVelocity, 0, _maxSailVelocity * 0.01f * Time.deltaTime);
+            sailVelocity = Mathf.Lerp(sailVelocity, 0, maxSailVelocity * 0.01f * Time.deltaTime);
 		}
 
         if (Input.GetKeyDown(confirmButton))
@@ -74,8 +82,8 @@ public class ShipControls : MonoBehaviour
         }
 
         // Clamp velocities.
-        _rotationSpeed = Mathf.Clamp(_rotationSpeed, -_maxRotationSpeed, _maxRotationSpeed);
-        _sailVelocity = Mathf.Clamp(_sailVelocity, 0, _maxSailVelocity);
+        rotationSpeed = Mathf.Clamp(rotationSpeed, -maxRotationSpeed, maxRotationSpeed);
+        sailVelocity = Mathf.Clamp(sailVelocity, 0, maxSailVelocity);
 
         IncrementPosition();
         IncrementRotation();
@@ -92,7 +100,7 @@ public class ShipControls : MonoBehaviour
 
             // Ignore collision between the ship's components and the cannonball.
             Collider cannonBallCol = newCannonBall.GetComponent<Collider>();
-            foreach(Collider col in colliders)
+            foreach(Collider col in _colliders)
             {
                 Physics.IgnoreCollision(cannonBallCol, col);
             }
@@ -102,22 +110,22 @@ public class ShipControls : MonoBehaviour
 			cannonSounds[randomCannonSound].Play();
 
             // Delay between shots.
-            yield return new WaitForSeconds(_shootInterval);
+            yield return new WaitForSeconds(shootInterval);
 		}
 
         // Weapon cooldown.
-        yield return new WaitForSeconds(_totalShootCooldown);
+        yield return new WaitForSeconds(totalShootCooldown);
 		_reloading = false;
 		yield break;
     }
 
     private void IncrementPosition()
     {
-        transform.position += transform.forward * _sailVelocity * Time.deltaTime;
+        transform.position += transform.forward * sailVelocity * Time.deltaTime;
     }
 
     private void IncrementRotation()
     {
-        transform.Rotate(transform.up, _rotationSpeed * Time.deltaTime);
+        transform.Rotate(transform.up, rotationSpeed * Time.deltaTime);
     }
 }

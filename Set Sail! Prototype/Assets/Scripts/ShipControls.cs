@@ -6,26 +6,28 @@ public class ShipControls : MonoBehaviour
 {
 	public KeyCode leftButton, rightButton, upButton, downButton, confirmButton, shootButton;
 
-    public List<Transform> cannons = new List<Transform>();
-
 	public float _rotationSpeed = 0f;
-	private float _maxRotationSpeed = 10f;
-	private float _rotationSlowdownRate = 0.1f;
+	public float _maxRotationSpeed = 60f;
 
-	private float _sailVelocity = 0f;
-	private float _maxSailVelocity = 3f;
+	public float _sailVelocity = 0f;
+	public float _maxSailVelocity = 30f;
+    public float _sailAcceleration = 5.0f;
 
     public float _totalShootCooldown = 2f;
 	public float _shootInterval = 0.3f;
 	private bool _reloading = false;
 
+    public GameObject cannonBall;
+    public float cannonBallShootVelocity = 100f;
+
+    public int health = 9;
+    public int maxHealth = 9;
+
+    public List<Transform> cannons = new List<Transform>();
+
 	public List<AudioSource> cannonSounds = new List<AudioSource>();
 
-	public int health = 9;
-
-	public GameObject cannonBall;
-
-	public float cannonBallShootVelocity = 10f;
+    public List<Collider> colliders = new List<Collider>();
 
 	private void Update()
     {
@@ -42,18 +44,18 @@ public class ShipControls : MonoBehaviour
 		else
 		{
             // Turning friction.
-            _rotationSpeed = Mathf.Lerp(_rotationSpeed, 0, _maxRotationSpeed * 2 * Time.deltaTime);
+            _rotationSpeed = Mathf.Lerp(_rotationSpeed, 0, _maxRotationSpeed * 0.5f * Time.deltaTime);
 		}
 
         if (Input.GetKey(upButton))
         {
 			// Speed up in 3 seconds.
-			_sailVelocity += _maxSailVelocity / 3f * Time.deltaTime;
+			_sailVelocity += _sailAcceleration * Time.deltaTime;
         }
 		else if (Input.GetKey(downButton))
         {
 			// Slow down in 2 seconds.
-            _sailVelocity -= _maxSailVelocity / 2f * Time.deltaTime;
+            _sailVelocity -= _maxSailVelocity / 5f * Time.deltaTime;
         }
 		else
         {
@@ -87,15 +89,26 @@ public class ShipControls : MonoBehaviour
         _reloading = true;
 		foreach (Transform cannon in cannons)
 		{
-			GameObject ball = Instantiate(cannonBall, cannon.transform.position, Quaternion.identity);
-            ball.GetComponent<Rigidbody>().AddForce(transform.right * cannonBallShootVelocity);
+            // Spawn cannonball and start moving it.
+			GameObject newCannonBall = Instantiate(cannonBall, cannon.transform.position, Quaternion.identity);
+            newCannonBall.GetComponent<Rigidbody>().AddForce(cannon.transform.right * cannonBallShootVelocity);
 
-			int randomCannonSound = Random.Range(0, cannonSounds.Count - 1);
+            // Ignore collision between the ship's components and the cannonball.
+            Collider cannonBallCol = newCannonBall.GetComponent<Collider>();
+            foreach(Collider col in colliders)
+            {
+                Physics.IgnoreCollision(cannonBallCol, col);
+            }
+
+            // Play a random cannon shooting sound.
+			int randomCannonSound = Random.Range(0, cannonSounds.Count);
 			cannonSounds[randomCannonSound].Play();
 
+            // Delay between shots.
             yield return new WaitForSeconds(_shootInterval);
 		}
 
+        // Weapon cooldown.
         yield return new WaitForSeconds(_totalShootCooldown);
 		_reloading = false;
 		yield break;
@@ -103,11 +116,11 @@ public class ShipControls : MonoBehaviour
 
     private void IncrementPosition()
     {
-        transform.position += transform.forward * _sailVelocity;
+        transform.position += transform.forward * _sailVelocity * Time.deltaTime;
     }
 
     private void IncrementRotation()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + _rotationSpeed, transform.rotation.z);
+        transform.Rotate(transform.up, _rotationSpeed * Time.deltaTime);
     }
 }

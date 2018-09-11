@@ -13,7 +13,8 @@ public class QuestTrigger : MonoBehaviour {
 	{
 		if(other.gameObject.tag == "Player" && !_activated)
 		{
-			if(other.gameObject.transform.GetComponent<ShipControls>().sailVelocity < speedThreshold)
+			if( other.gameObject.transform.GetComponent<ShipControls>().sailVelocity < speedThreshold &&
+				!other.gameObject.transform.GetComponent<QuestManager>().QuestActive)
 			{
 				_activated = true;
 				GameObject questWindow = Instantiate(prefabQuestWindow);
@@ -23,7 +24,10 @@ public class QuestTrigger : MonoBehaviour {
 					questWindow.transform.SetParent(sceneCanvas);
 
 					// Change quest windows text
-					questWindow.GetComponent<QuestWindow>().UpdateText("Destroy Enemy Vessel", "Placeholder text here. When accepting ship will spawn.");
+					questWindow.GetComponent<QuestWindow>().UpdateText(
+						"Destroy Enemy Vessel", 
+						"An enemy vessel has been spotted! Take it down before they reach this outpost."
+					);
 				}
 			}
 		}

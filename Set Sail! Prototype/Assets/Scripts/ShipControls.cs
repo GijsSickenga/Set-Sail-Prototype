@@ -26,12 +26,16 @@ public class ShipControls : MonoBehaviour
 
     private List<Collider> _colliders = new List<Collider>();
 
+    private Rigidbody _myBody;
+
     private void Start()
     {
         foreach(Collider col in GetComponentsInChildren(typeof(Collider), true))
         {
             _colliders.Add(col);
         }
+
+        _myBody = GetComponent<Rigidbody>();
     }
 
 	private void Update()
@@ -96,7 +100,7 @@ public class ShipControls : MonoBehaviour
 		{
             // Spawn cannonball and start moving it.
 			GameObject newCannonBall = Instantiate(cannonBall, cannon.transform.position, Quaternion.identity);
-            newCannonBall.GetComponent<Rigidbody>().AddForce(cannon.transform.right * cannonBallShootVelocity);
+            newCannonBall.GetComponent<Rigidbody>().AddForce(cannon.transform.GetChild(0).up * cannonBallShootVelocity);
 
             // Ignore collision between the ship's components and the cannonball.
             Collider cannonBallCol = newCannonBall.GetComponent<Collider>();
@@ -121,7 +125,7 @@ public class ShipControls : MonoBehaviour
 
     private void IncrementPosition()
     {
-        transform.position += transform.forward * sailVelocity * Time.deltaTime;
+        _myBody.velocity = transform.forward * sailVelocity * Time.deltaTime;
     }
 
     private void IncrementRotation()

@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 114813201739169904}
   - component: {fileID: 82275066893848832}
   - component: {fileID: 82161447306613180}
+  - component: {fileID: 54916341023786964}
   m_Layer: 0
   m_Name: Red Ship
   m_TagString: Untagged
@@ -574,6 +575,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1240425815971236}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54916341023786964
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604479382047314}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65353174247962766
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -805,13 +821,13 @@ MonoBehaviour:
   downButton: 274
   confirmButton: 13
   shootButton: 303
-  _rotationSpeed: 0
-  _maxRotationSpeed: 60
-  _sailVelocity: 0
-  _maxSailVelocity: 30
-  _sailAcceleration: 5
-  _totalShootCooldown: 2
-  _shootInterval: 0.3
+  rotationSpeed: 0
+  maxRotationSpeed: 60
+  sailVelocity: 0
+  maxSailVelocity: 30
+  sailAcceleration: 5
+  totalShootCooldown: 2
+  shootInterval: 0.3
   cannonBall: {fileID: 1523091984373166, guid: 214d3d3d5bb840c47883bc3414ad22de, type: 2}
   cannonBallShootVelocity: 3000
   cannons:
@@ -821,13 +837,6 @@ MonoBehaviour:
   cannonSounds:
   - {fileID: 82275066893848832}
   - {fileID: 82161447306613180}
-  colliders:
-  - {fileID: 65353174247962766}
-  - {fileID: 136571539841001898}
-  - {fileID: 65697629564881072}
-  - {fileID: 136793940344615480}
-  - {fileID: 136607697599598974}
-  - {fileID: 136679623618571544}
 --- !u!114 &114813201739169904
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1584,8 +1584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7d052328e6fe74b82d57787fc94e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 9
-  maxHealth: 9
+  health: 4
+  maxHealth: 4
   shipAnim: {fileID: 95978195600361554}
 --- !u!136 &136313579374775222
 CapsuleCollider:

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Explosive : MonoBehaviour
 {
-	public AudioSource explosion;
-
     public GameObject explosionEffect;
     public GameObject splashEffect;
 
@@ -30,9 +28,6 @@ public class Explosive : MonoBehaviour
         {
             // Instantiate(splashEffect, transform.position, Quaternion.identity);
         }
-
-        // Play explosion sound effect.
-        explosion.Play();
 
         Destroy(gameObject);
     }

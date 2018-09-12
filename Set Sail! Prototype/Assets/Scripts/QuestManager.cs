@@ -23,10 +23,13 @@ public class QuestManager : MonoBehaviour {
 	private Text questSubtext;
 
 	private string vesselHeadline = "Vessel Spotted!";
-	private string vesselMessage = "Travel towards a vessel to the % of you";
+	private string vesselMessage = "Find, travel towards and fight the enemy vessel";
 
-	private string crateHeadline = "Bring The Loot";
-	private string crateMessage = "Pick up the crate and bring the loot back";
+	private string cratePickupHeadline = "Pickup the Loot";
+	private string cratePickupMessage = "Pick up the crate that the enemy dropped";
+	
+	private string crateDeliveryHeadline = "Bring the Loot";
+	private string crateDeliveryMessage = "Deliver the crate to the island";
 	
 	// Update is called once per frame
 	void Update () 
@@ -58,12 +61,14 @@ public class QuestManager : MonoBehaviour {
 		if(questState == QuestStates.Fight)
 		{
 			questState = QuestStates.Loot;
-			questHeadline.text = crateHeadline;
-			questSubtext.text = crateMessage;
+			questHeadline.text = cratePickupHeadline;
+			questSubtext.text = cratePickupMessage;
 		}
 		else if(questState == QuestStates.Loot)
 		{
 			questState = QuestStates.Delivery;
+			questHeadline.text = crateDeliveryHeadline;
+			questSubtext.text = crateDeliveryMessage;
 		}
 	}
 

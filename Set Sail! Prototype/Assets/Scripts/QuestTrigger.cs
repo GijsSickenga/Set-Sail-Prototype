@@ -13,8 +13,10 @@ public class QuestTrigger : MonoBehaviour {
 	{
 		if(other.gameObject.tag == "Player" && !_activated)
 		{
-			if( other.gameObject.GetComponent<ShipControls>().sailVelocity < speedThreshold &&
-				!other.gameObject.GetComponent<QuestManager>().QuestActive)
+			if(
+				!other.gameObject.GetComponent<QuestManager>().QuestActive &&
+				GameObject.FindObjectOfType<QuestWindow>() == null
+			)
 			{
 				_activated = true;
 				GameObject questWindow = Instantiate(prefabQuestWindow);

@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4366899493994106}
-  - component: {fileID: 114883447359236600}
-  - component: {fileID: 199627743074401562}
   - component: {fileID: 198343789975424414}
+  - component: {fileID: 199627743074401562}
+  - component: {fileID: 114883447359236600}
   m_Layer: 0
   m_Name: FireEffect
   m_TagString: Untagged

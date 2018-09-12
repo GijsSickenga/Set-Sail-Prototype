@@ -570,7 +570,7 @@ Transform:
   m_GameObject: {fileID: 1960639959491286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.9, y: 0.3, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
   m_Children:
   - {fileID: 4267993006074474}
   m_Father: {fileID: 0}
@@ -1551,12 +1551,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1508ea2ca6d1648a7f3e6f1879724d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftButton: 276
-  rightButton: 275
-  upButton: 273
-  downButton: 274
-  confirmButton: 13
-  shootButton: 303
+  leftButton: 0
+  rightButton: 0
+  upButton: 0
+  downButton: 0
+  confirmButton: 0
+  shootButton: 0
+  cannonUpButton: 0
+  cannonDownButton: 0
   rotationSpeed: 0
   maxRotationSpeed: 60
   sailVelocity: 0
@@ -1566,6 +1568,14 @@ MonoBehaviour:
   shootInterval: 0.3
   cannonBall: {fileID: 1523091984373166, guid: 214d3d3d5bb840c47883bc3414ad22de, type: 2}
   cannonBallShootVelocity: 3000
+  minimumCannonAngle: -5
+  maximumCannonAngle: 45
+  cannonAngle: 10
+  cannonTiltSpeed: 45
+  cannonParent: {fileID: 1960639959491286}
+  barrelSmokeEffect: {fileID: 1868520032555146, guid: 5d29a070f9e888a4597bbdc6ce766a3b,
+    type: 2}
+  cannonBallShipSpeedMultiplier: 80
   cannons:
   - {fileID: 4274659585738406}
   - {fileID: 4012413339015854}

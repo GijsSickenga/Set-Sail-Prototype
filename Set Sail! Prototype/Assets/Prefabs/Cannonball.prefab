@@ -24,8 +24,6 @@ GameObject:
   - component: {fileID: 135041777717809330}
   - component: {fileID: 114348362233024056}
   - component: {fileID: 54613627810406538}
-  - component: {fileID: 198163161729474312}
-  - component: {fileID: 199231739680979106}
   m_Layer: 0
   m_Name: Cannonball
   m_TagString: Untagged
@@ -33,6 +31,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1897879163553742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4458741004405198}
+  - component: {fileID: 199586385925024686}
+  - component: {fileID: 198297422547630114}
+  m_Layer: 0
+  m_Name: SmokeTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4458741004405198
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897879163553742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4694526515605696}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4694526515605696
 Transform:
   m_ObjectHideFlags: 1
@@ -42,7 +70,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4458741004405198}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -117,7 +146,8 @@ MonoBehaviour:
   explosionEffect: {fileID: 1081815049071340, guid: 4f49f8b862d69114baddf21ab4d9cfbc,
     type: 2}
   fireEffect: {fileID: 1380408801515860, guid: f84cb2e1853930348a38fdf8bd33d12d, type: 2}
-  splashEffect: {fileID: 0}
+  splashEffect: {fileID: 1305467181509314, guid: e0b8471bb418093468aa6b21b6ac70c4,
+    type: 2}
   damage: 1
 --- !u!135 &135041777717809330
 SphereCollider:
@@ -131,12 +161,12 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!198 &198163161729474312
+--- !u!198 &198297422547630114
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1523091984373166}
+  m_GameObject: {fileID: 1897879163553742}
   serializedVersion: 5
   lengthInSec: 5
   simulationSpeed: 1
@@ -1343,7 +1373,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.9102664, b: 0.5330188, a: 1}
-        key1: {r: 1, g: 0.8079631, b: 0, a: 1}
+        key1: {r: 1, g: 0.8079631, b: 0, a: 0.78431374}
         key2: {r: 1, g: 0.3266133, b: 0, a: 0}
         key3: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4664,13 +4694,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &199231739680979106
+--- !u!199 &199586385925024686
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1523091984373166}
+  m_GameObject: {fileID: 1897879163553742}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0

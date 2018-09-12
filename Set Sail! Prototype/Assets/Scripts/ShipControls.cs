@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipControls : MonoBehaviour
 {
-	public KeyCode leftButton, rightButton, upButton, downButton, confirmButton, shootButton;
+	public KeyCode leftButton, rightButton, upButton, downButton, confirmButton, shootButton, cannonUpButton, cannonDownButton;
 
 	public float rotationSpeed = 0f;
 	public float maxRotationSpeed = 60f;
@@ -19,6 +19,25 @@ public class ShipControls : MonoBehaviour
 
     public GameObject cannonBall;
     public float cannonBallShootVelocity = 100f;
+
+    public float minimumCannonAngle = -5f;
+    public float maximumCannonAngle = 45f;
+    public float cannonAngle = 10f;
+    public float cannonTiltSpeed = 45f;
+
+    public GameObject cannonParent;
+
+    public GameObject barrelSmokeEffect;
+
+    [Tooltip("What percentage of the ship's velocity is transferred to the cannonballs being shot from it.")]
+    public float cannonBallShipSpeedMultiplier = 80f;
+    public float CannonBallShipSpeedMultiplier
+    {
+        get
+        {
+            return cannonBallShipSpeedMultiplier * 0.5f;
+        }
+    }
 
     public List<Transform> cannons = new List<Transform>();
 
@@ -85,6 +104,19 @@ public class ShipControls : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(cannonUpButton))
+        {
+            cannonAngle += cannonTiltSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(cannonDownButton))
+        {
+            cannonAngle -= cannonTiltSpeed * Time.deltaTime;
+        }
+
+        // Adjust cannon angle to new angle.
+        cannonAngle = Mathf.Clamp(cannonAngle, minimumCannonAngle, maximumCannonAngle);
+        cannonParent.transform.localRotation = Quaternion.Euler(0, 0, cannonAngle);
+
         // Clamp velocities.
         rotationSpeed = Mathf.Clamp(rotationSpeed, -maxRotationSpeed, maxRotationSpeed);
         sailVelocity = Mathf.Clamp(sailVelocity, 0, maxSailVelocity);
@@ -100,7 +132,12 @@ public class ShipControls : MonoBehaviour
 		{
             // Spawn cannonball and start moving it.
 			GameObject newCannonBall = Instantiate(cannonBall, cannon.transform.position, Quaternion.identity);
-            newCannonBall.GetComponent<Rigidbody>().AddForce(cannon.transform.GetChild(0).up * cannonBallShootVelocity);
+            Rigidbody cannonBallBody = newCannonBall.GetComponent<Rigidbody>();
+            cannonBallBody.AddForce(cannon.transform.GetChild(0).up * cannonBallShootVelocity +
+                                    transform.forward * sailVelocity * CannonBallShipSpeedMultiplier);
+
+            // Give the cannon balls some rotation over time.
+            cannonBallBody.AddTorque(Random.Range(-15, 16), 0f, 0f);
 
             // Ignore collision between the ship's components and the cannonball.
             Collider cannonBallCol = newCannonBall.GetComponent<Collider>();
@@ -112,6 +149,9 @@ public class ShipControls : MonoBehaviour
             // Play a random cannon shooting sound.
 			int randomCannonSound = Random.Range(0, cannonSounds.Count);
 			cannonSounds[randomCannonSound].Play();
+
+            // Spawn barrel smoke at the barrel the cannon was shot out of.
+            Instantiate(barrelSmokeEffect, cannon.transform.position, Quaternion.identity, cannon.transform);
 
             // Delay between shots.
             yield return new WaitForSeconds(shootInterval);

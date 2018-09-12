@@ -1582,7 +1582,7 @@ MonoBehaviour:
   totalShootCooldown: 2
   shootInterval: 0.3
   cannonBall: {fileID: 1523091984373166, guid: 214d3d3d5bb840c47883bc3414ad22de, type: 2}
-  cannonBallShootVelocity: 3000
+  cannonBallShootVelocity: 3500
   minimumCannonAngle: 0
   maximumCannonAngle: 45
   cannonAngle: 10
@@ -1771,7 +1771,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1824,7 +1824,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.1
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2315,15 +2315,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 18
+    type: 5
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: -0.2, y: -0.1, z: 0.8}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 0.1, z: 1}
+    m_Position: {x: -0.2, y: -0.1, z: 0.9}
+    m_Rotation: {x: 0, y: 90, z: 0}
+    m_Scale: {x: 0.1, y: 0.1, z: 2}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -2346,7 +2346,7 @@ ParticleSystem:
     sphericalDirectionAmount: 1
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.5
       mode: 0
       spread: 0
       speed:
@@ -2404,7 +2404,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 3
       spread: 0
       speed:
         serializedVersion: 2
@@ -2518,7 +2518,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2920,7 +2920,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
+        atime1: 33346
         atime2: 0
         atime3: 0
         atime4: 0
